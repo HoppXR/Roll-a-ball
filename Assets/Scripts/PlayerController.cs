@@ -6,6 +6,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    private Timer timer;
+    
     private Rigidbody rb;
     
     private int count;
@@ -22,9 +24,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent <Rigidbody>();
+        timer = FindObjectOfType<Timer>();
         
         count = 0; 
         SetCountText();
+        
+        timer.StartTimer();
         
         winTextObject.SetActive(false);
     }
@@ -59,9 +64,11 @@ public class PlayerController : MonoBehaviour
     {
         countText.text =  "Count: " + count.ToString();
         
-        if (count >= 6)
+        if (count >= 18)
         {
             winTextObject.SetActive(true);
+            
+            timer.StopTimer();
         }
     }
 }
