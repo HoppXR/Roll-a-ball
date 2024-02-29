@@ -6,23 +6,26 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TMP_Text timer;
-    private bool timerActive;
+    private bool _timerActive;
+    public float time;
     
     void Update()
     {
-        if (timerActive)
+        time += Time.deltaTime;
+        
+        if (_timerActive)
         {
-            timer.text = $"{Time.realtimeSinceStartup: 0.000}";
+            timer.text = $"{time: 0.000}";
         }
     }
 
     public void StartTimer()
     {
-        timerActive = true;
+        _timerActive = true;
     }
 
     public void StopTimer()
     {
-        timerActive = false;
+        _timerActive = false;
     }
 }
